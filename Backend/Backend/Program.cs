@@ -30,7 +30,7 @@ var app = builder.Build();
 
 app.MapDefaultEndpoints();
 
-// Configure the HTTP request pipeline.
+
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
@@ -155,28 +155,20 @@ public class NotificationHub : Hub
 
         _logger.LogInformation("Someone sent a message: {@Message}", message);
 
-
         await Clients.All.SendAsync("ClientsAllUpdatePlayerState", message);
     }
 
 
     public override Task OnConnectedAsync()
     {
-        var test = Context.ConnectionId;
-
-        //AppState.ConnectedUsers.Add(Context.UserIdentifier);
-
         _logger.LogInformation("Client connected");
-
         return base.OnConnectedAsync();
     }
 
 
     public override Task OnDisconnectedAsync(Exception? exception)
     {
-        _logger.LogInformation("Client disconnected from session");
-
-
+        _logger.LogInformation("Client disconnected");
         return base.OnDisconnectedAsync(exception);
     }
 }

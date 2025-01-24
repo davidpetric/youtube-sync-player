@@ -3,7 +3,6 @@ import * as signalR from "@microsoft/signalr";
 
 import "./App.css";
 import { UUID } from "crypto";
-import { Server } from "http";
 
 type EventType =
   | "none"
