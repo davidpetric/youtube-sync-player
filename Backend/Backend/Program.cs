@@ -93,30 +93,6 @@ public class PlayerState
 public static class AppState
 {
 
-    static readonly string[] RandomNames = [
-      "orangutan",
-      "mare",
-      "fish",
-      "deer",
-      "argali",
-      "sloth",
-      "gemsbok",
-      "jackal",
-      "fawn",
-      "musk deer",
-      "giraffe",
-      "gazelle",
-      "addax",
-      "ermine",
-      "bull",
-      "silver fox",
-      "duckbill platypus",
-      "jerboa",
-      "aoudad",
-      "lamb",
-    ];
-
-
     public static List<UserDto> ConnectedUsers = new List<UserDto>();
 }
 
@@ -151,9 +127,7 @@ public class NotificationHub : Hub
 
     public async Task ServerUpdatePlayerState(string message)
     {
-        PlayerState? playerState = JsonConvert.DeserializeObject<PlayerState>(message);
-
-        _logger.LogInformation("Someone sent a message: {@Message}", message);
+        _logger.LogInformation("{@Message}", message);
 
         await Clients.All.SendAsync("ClientsAllUpdatePlayerState", message);
     }
